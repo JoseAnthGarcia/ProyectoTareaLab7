@@ -6,10 +6,35 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ClientDao {
+    public int calcularCantPag(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
+
+        String sql = "select ceil(count(p.nombreFoto)/8)\n" +
+                "from producto p\n" +
+                "inner join bodega b on p.idBodega=b.idBodega;";
+
+        int cantPag = 0;
+        try (Connection conn = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
+            rs.next();
+            cantPag = rs.getInt(1);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cantPag;
+    }
     public ArrayList<ProductoBodegasBean> listarProductoBodegas(int pagina){
 
         ArrayList<ProductoBodegasBean> listaProductos = new ArrayList<>();
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {

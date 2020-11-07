@@ -25,10 +25,15 @@ public class ClientServlet extends HttpServlet {
         ClientDao clientDao = new ClientDao();
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
-        int pagina = Integer.parseInt(pag); //try
+        int paginaAct = Integer.parseInt(pag); //try
 
-        ArrayList<ProductoBodegasBean> listaProductos = clientDao.listarProductoBodegas(pagina);
+        int cantPag = clientDao.calcularCantPag();
+
+        ArrayList<ProductoBodegasBean> listaProductos = clientDao.listarProductoBodegas(paginaAct);
+
         request.setAttribute("listaProductoBodegas", listaProductos);
+        request.setAttribute("cantPag", cantPag);
+        request.setAttribute("paginaAct",paginaAct);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("listarProductosBodegas.jsp");
         requestDispatcher.forward(request,response);
