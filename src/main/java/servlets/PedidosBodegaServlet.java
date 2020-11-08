@@ -27,13 +27,15 @@ public class PedidosBodegaServlet extends HttpServlet {
         RequestDispatcher view;
         switch (action){
             case "listar":
-                ArrayList<PedidosBodegaBean> listaPedidosBodega = pedidoBodegaDao.obtenerListaPedidosBodega();
+                String pag = request.getParameter("pag") == null ?
+                        "1" : request.getParameter("pag");
+                int paginaAct = Integer.parseInt(pag);
+                int cantPag = pedidoBodegaDao.calcularCantPag();
+                ArrayList<PedidosBodegaBean> listaPedidosBodega = pedidoBodegaDao.obtenerListaPedidosBodega(paginaAct);
                 request.setAttribute("listaPedidosBodega", listaPedidosBodega);
+                request.setAttribute("cantPag", cantPag);
+                request.setAttribute("paginaAct",paginaAct);
                 view = request.getRequestDispatcher("listaPedidosBodega.jsp");
-                view.forward(request,response);
-                break;
-            case "crear":
-                view = request.getRequestDispatcher("crearPedido.jsp");
                 view.forward(request,response);
                 break;
             case "mostrar":
