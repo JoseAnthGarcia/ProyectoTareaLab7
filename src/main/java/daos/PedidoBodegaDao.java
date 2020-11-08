@@ -10,9 +10,34 @@ public class PedidoBodegaDao {
     String pass = "root";
     String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
-    public ArrayList<PedidosBodegaBean> obtenerListaPedidosBodega() {
-        ArrayList<PedidosBodegaBean> listaPedidosBodega = new ArrayList<>();
+    public int calcularCantPag(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
+
+        String sql = "select ceil(count(codigo)/5) from pedido where idBodega = 1";
+
+        int cantPag = 0;
+        try (Connection conn = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
+            rs.next();
+            cantPag = rs.getInt(1);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cantPag;
+    }
+
+    public ArrayList<PedidosBodegaBean> obtenerListaPedidosBodega(int pagina) {
+        int limit = (pagina-1)*5;
+        ArrayList<PedidosBodegaBean> listaPedidosBodega = new ArrayList<>();
+        String sql = "select idPedido, codigo, estado from pedido where idBodega = 1 limit ?, 5";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -22,15 +47,17 @@ public class PedidoBodegaDao {
         try {
 
             Connection connection = DriverManager.getConnection(url, user, pass);
-            Statement statement = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, limit);
 
-            ResultSet rs = statement.executeQuery("select idPedido, codigo, estado from pedido");
-            while (rs.next()) {
-                PedidosBodegaBean pedidos = new PedidosBodegaBean();
-                pedidos.setIdPedido(rs.getInt(1));
-                pedidos.setCodigo(rs.getString(2));
-                pedidos.setEstado(rs.getString(3));
-                listaPedidosBodega.add(pedidos);
+            try (ResultSet rs = statement.executeQuery();) {
+                while (rs.next()) {
+                    PedidosBodegaBean pedidos = new PedidosBodegaBean();
+                    pedidos.setIdPedido(rs.getInt(1));
+                    pedidos.setCodigo(rs.getString(2));
+                    pedidos.setEstado(rs.getString(3));
+                    listaPedidosBodega.add(pedidos);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
