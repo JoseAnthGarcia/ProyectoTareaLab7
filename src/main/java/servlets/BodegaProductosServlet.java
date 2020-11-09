@@ -22,21 +22,29 @@ public class BodegaProductosServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        MiBodegaProductosDao bodegaDao = new MiBodegaProductosDao();
 
+        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
+        
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
-        int paginaAct = Integer.parseInt(pag); //try
+        int paginaAct = Integer.parseInt(pag); // se trata de obtener la pagina actual, si es null, se asigna la 1 por defecto
+        int cantPag = MiBodegaProductosDao.calcularCantPag();
 
-        int cantPag = bodegaDao.calcularCantPag();
+        RequestDispatcher view;
+        switch (action) {
+            case "lista":
+                ArrayList<MiBodegaProductosBean> listaProductos = MiBodegaProductosDao.listarProductoBodega(paginaAct); // se lista los productos de la pagina actual
 
-        ArrayList<MiBodegaProductosBean> listaProductos = bodegaDao.listarProductoBodega(paginaAct);
+                request.setAttribute("listaProductoBodegas", listaProductos);
+                request.setAttribute("cantPag", cantPag);
+                request.setAttribute("paginaAct",paginaAct);
+                view = request.getRequestDispatcher("MiBodegaProductos.jsp");
+                view.forward(request,response);
+                break;
+            case "formAdd":
+                view = request.getRequestDispatcher("anadirProducto.jsp");
+                view.forward(request,response);
+        }
 
-        request.setAttribute("listaProductoBodegas", listaProductos);
-        request.setAttribute("cantPag", cantPag);
-        request.setAttribute("paginaAct",paginaAct);
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MiBodegaProductos.jsp");
-        requestDispatcher.forward(request,response);
     }
 }

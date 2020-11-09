@@ -77,7 +77,7 @@
 
     <!-- botones -->
     <div class="row justify-content-end" style="margin-bottom: 20px;">
-        <a href="AgregarProducto.html">
+        <a href="<%=request.getContextPath()%>/BodegaProductos?action=formAdd">
             <button class="btn"><i class="fa fa-plus"></i></button>
         </a>
         <button class="btn"><i class="fa fa-trash"></i></button>
@@ -105,7 +105,7 @@
             %>
             <tr>
                 <th scope="row">
-                    <input type="radio">
+                    <input type="radio" name="productoSeleccionado">
                 </th>
                 <td>
                     <img src="<%=producto.getRutaFoto()%>" height="35">
@@ -123,22 +123,6 @@
         </table>
     </div>
 
-    <!-- paginacion
-    <div class="row">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div> -->
     <!-- paginacion -->
     <div class="row">
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
