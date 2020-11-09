@@ -9,7 +9,8 @@
 <%@ page import= "beans.PedidosBodegaBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="listaPedidosBodega" scope="request" type="java.util.ArrayList<beans.PedidosBodegaBean>"/>
-
+<jsp:useBean id="cantPag" scope="request" type="java.lang.Integer"/>
+<jsp:useBean id="paginaAct" scope="request" type="java.lang.Integer"/>
 <html>
 <head>
     <title>Title</title>
@@ -63,29 +64,49 @@
             <% } %>
         </table>
         <div class="row">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
+            <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
+                <ul class="pagination justify-content-center">
+                    <%if(paginaAct==1){%>
                     <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        <span class="page-link">Anterior</span>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <%}else{%>
                     <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" href="<%=request.getContextPath()%>/PedidosServlet?pag=<%=paginaAct-1%>">Anterior</a>
                     </li>
+                    <%}%>
+
+                    <% for(int k=1; k<=cantPag; k++){
+                        if(k==paginaAct){%>
+                    <li class="page-item active">
+                          <span class="page-link"><%=k%><span class="sr-only">(current)</span>
+                          </span>
+                    </li>
+                    <%      }else{%>
+                    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/PedidosServlet?pag=<%=k%>"><%=k%></a></li>
+                    <%      }
+                    } %>
+
+
+                    <%if(paginaAct==cantPag){%>
+                    <li class="page-item disabled">
+                        <span class="page-link">Siguiente</span>
+                    </li>
+                    <%}else{%>
+                    <li class="page-item">
+                        <a class="page-link" href="<%=request.getContextPath()%>/PedidosServlet?pag=<%=paginaAct+1%>">Siguiente</a>
+                    </li>
+                    <%}%>
+
                 </ul>
             </nav>
         </div>
     </div>
-</div>
-
-</div>
 <footer class="page-footer font-small blue" style="margin-top: 60px">
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
         <a href="#"> MiMarca.com</a>
     </div>
 </footer>
-
+</div>
 </body>
 </html>
