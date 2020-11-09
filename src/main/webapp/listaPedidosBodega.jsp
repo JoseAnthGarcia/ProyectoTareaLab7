@@ -67,7 +67,7 @@
             <a href="<%=request.getContextPath()%>/PedidosServlet" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
             </a>
-            <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
+            <a href="#" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR9XQYb7eVu1VyTTjGNd69RWqaIge0precdjw&usqp=CAU.png" height="30px"/></a>
         </div>
     </div>
 </header>
