@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .btn {
-            background-color: #d6d2c4;
+            background-color: #343a40;
             border: none;
-            color: black;
+            color: white;
             padding: 12px 16px;
             font-size: 15px;
             cursor: pointer;
         }
         /* Darker background on mouse-over */
         .btn:hover {
-            background-color: #f05454;
+            background-color: #767676;
         }
         .margen{
             margin-top: 2%;
@@ -30,12 +30,12 @@
             padding: 3% 15% ;
         }
         .page-item .page-link {
-            color: #767676;
-            border-color: #767676;
+            color: #343a40;
+            border-color: #343a40;
         }
         .page-item.active .page-link {
-            border-color: #767676;
-            background-color: #767676;
+            border-color: #343a40;
+            background-color: #343a40;
         }
     </style>
 
@@ -93,6 +93,9 @@
 
     <!-- paginacion -->
     <div class="row">
+
+        <a href="#" class="btn btn-outline-danger">Volver</a>
+
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
             <ul class="pagination justify-content-center">
                 <%if(paginaAct==1){%>
@@ -129,6 +132,9 @@
 
             </ul>
         </nav>
+
+        <a href="#" class="btn btn-outline-success">Realizar un pedido</a>
+
     </div>
 
 
