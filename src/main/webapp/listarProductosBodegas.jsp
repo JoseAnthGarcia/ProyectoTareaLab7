@@ -39,7 +39,7 @@
         }
     </style>
 
-    <title>Bienvenido Bodega!</title>
+    <title>Productos disponibles</title>
 </head>
 <body>
 
@@ -53,22 +53,19 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Anacleto.com</strong>
+                <strong>MiMarca.com</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Mi Bodega</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Productos</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Pedidos</strong>
-            </a>
+            <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
+
         </div>
     </div>
 </header>
+<div class="container" style="margin-top: 20px">
+    <h1>Productos disponibles</h1>
+</div>
 
-<div class="container" style="margin-top: 65px">
+
+<div class="container" style="margin-top: 30px">
     <!-- Presentacion de productos -->
     <% int cant = 0;
     for(int i=0; i<2; i++){
