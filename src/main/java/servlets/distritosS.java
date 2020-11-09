@@ -31,7 +31,7 @@ public class distritosS extends HttpServlet {
         request.setAttribute("listaBodegas", listaBodegas);
         request.setAttribute("cantPag", cantPag);
         request.setAttribute("paginaAct", paginaAct);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("listarBodegas.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("distritos.jsp");
         requestDispatcher.forward(request, response);
     }
 }
