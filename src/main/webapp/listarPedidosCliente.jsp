@@ -29,6 +29,7 @@
         }
         .margen{
             margin-top: 2%;
+            margin-bottom: 5%;
         }
         .container-fluid{
             text-align: center;
@@ -43,7 +44,7 @@
             background-color: #767676;
         }
     </style>
-    <title>Title</title>
+    <title>Mis pedidos</title>
 </head>
 <body>
 <header>
@@ -57,7 +58,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiTienda.com</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <!--  <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Mi Bodega</strong>
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
@@ -65,7 +66,7 @@
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
-            </a>
+            </a> -->
         </div>
     </div>
 </header>
@@ -81,14 +82,20 @@
             </tr>
             <% for (PedidosClienteBean pedido: listaPedidos){%>
             <tr>
-                <td><%=pedido.getCodigoPedido()%> </td>
+                <td><a href="" ><%=pedido.getCodigoPedido()%></a> </td>
                 <td><%=pedido.getEstadoPedido()%></td>
-                <td><button type="button" class="btn btn-danger">Cancelar</button></td>
+
+                <td>
+                    <% if(pedido.getEstadoPedido().equalsIgnoreCase("Pendiente")){
+                    %>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                <% } %></td>
             </tr>
             <% } %>
         </table>
     </div>
     <div class="row">
+        <button type="button" class="btn btn-danger">Regresar</button>
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
             <ul class="pagination justify-content-center">
                 <%if(paginaAct==1){%>
@@ -100,6 +107,10 @@
                     <a class="page-link" href="<%=request.getContextPath()%>/pedidosCliente?pag=<%=paginaAct-1%>">Anterior</a>
                 </li>
                 <%}%>
+
+
+
+
 
                 <% for(int k=1; k<=cantPag; k++){
                     if(k==paginaAct){%>
@@ -126,6 +137,16 @@
             </ul>
         </nav>
     </div>
+    <div class="margen">
+        <footer class="page-footer font-small blue" style="margin-top: 20px">
+
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="#">MiMarca</a>
+            </div>
+
+        </footer>
+    </div>
+
 </div>
 
 </body>
