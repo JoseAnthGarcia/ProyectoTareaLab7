@@ -1,12 +1,13 @@
 package daos;
 
-import beans.ProductoBodegasBean;
+import beans.BodegasAdminBean;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ClientDao {
-    public int calcularCantPag(){
+public class BodegasAdminDao {
+
+    public static int calcularCantPag() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -15,9 +16,7 @@ public class ClientDao {
 
         String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
-        String sql = "select ceil(count(p.nombreFoto)/8)\n" +
-                "from producto p\n" +
-                "inner join bodega b on p.idBodega=b.idBodega;";
+        String sql = "select ceil(count(ruc)/5) from bodega where idAdministrador=5;";
 
         int cantPag = 0;
         try (Connection conn = DriverManager.getConnection(url, "root", "root");
@@ -31,9 +30,11 @@ public class ClientDao {
         }
         return cantPag;
     }
-    public ArrayList<ProductoBodegasBean> listarProductoBodegas(int pagina){
 
-        ArrayList<ProductoBodegasBean> listaProductos = new ArrayList<>();
+
+
+
+    public ArrayList<BodegasAdminBean> obtenerListaBodegas(int pagina){
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,17 +42,16 @@ public class ClientDao {
             e.printStackTrace();
         }
 
+        String user = "root";
+        String pass = "root";
         String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
-        //0,8,16,etc
-        // 1 -> 0, 2-> 8, 3-> 16
-        int limit = (pagina-1)*8;
+        ArrayList<BodegasAdminBean> listaBodegas = new ArrayList<>();
 
-        String sql = "select p.nombreFoto,p.rutaFoto ,p.nombreProducto, p.precioUnitario, b.nombreBodega\n" +
-                "from producto p\n" +
-                "inner join bodega b on p.idBodega=b.idBodega\n" +
-                "order by b.nombreBodega, p.nombreProducto\n" +
-                "limit ?,8;";
+        int limit = (pagina-1)*5;
+        String sql = "select * from bodega where idAdministrador=5 limit ?,5;";
+
+        //String sql= "select codigo, estado from pedido where idUsuario=1 limit ?,5;";
 
         try (Connection conn = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -59,21 +59,22 @@ public class ClientDao {
             pstmt.setInt(1, limit);
 
             try(ResultSet rs = pstmt.executeQuery();){
-                while (rs.next()) {
-                    ProductoBodegasBean producto = new ProductoBodegasBean();
-                    producto.setNombreFoto(rs.getString(1));
-                    producto.setRutaFoto(rs.getString(2));
-                    producto.setNombreProducto(rs.getString(3));
-                    producto.setPrecioProducto(rs.getBigDecimal(4));
-                    producto.setNombreBodega(rs.getString(5));
-                    listaProductos.add(producto);
+                while(rs.next()){
+                    BodegasAdminBean bodega = new BodegasAdminBean();
+                    bodega.setRucBodega(rs.getInt("ruc"));
+                    bodega.setNombreBodega(rs.getString("nombreBodega"));
+                    bodega.setEstadoBodega(rs.getString("estado"));
+
+                    listaBodegas.add(bodega);
                 }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return listaProductos;
+
+        return listaBodegas;
+
     }
 
 }

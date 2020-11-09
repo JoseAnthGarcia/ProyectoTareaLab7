@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .btn {
-            background-color: #ffffff;
+            background-color: #d6d2c4;
             border: none;
             color: black;
             padding: 12px 16px;
@@ -20,6 +20,21 @@
         }
         /* Darker background on mouse-over */
         .btn:hover {
+            background-color: #f05454;
+        }
+        .margen{
+            margin-top: 2%;
+        }
+        .container-fluid{
+            text-align: center;
+            padding: 3% 15% ;
+        }
+        .page-item .page-link {
+            color: #767676;
+            border-color: #767676;
+        }
+        .page-item.active .page-link {
+            border-color: #767676;
             background-color: #767676;
         }
     </style>
@@ -65,7 +80,7 @@
             if(cant < listaProductoBodegas.size()){
         %>
                 <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-                    <img src="https://tuchacrita.pe/710-big_default_2x/gaseosa-coca-cola-sin-azucar-botella-15-lt.jpg" width="100" class="img-thumbnail">
+                    <img src="./src/imagenes/Azucar.jpg" width="100" class="img-thumbnail">
                     <p class="mb-1"><b>Producto: </b> <%=listaProductoBodegas.get(j).getNombreProducto()%> </p>
                     <p class="mb-0"><b>Precio: </b> <%=listaProductoBodegas.get(j).getPrecioProducto()%> </p>
                     <p class="mb-3"><b>Bodega: </b> <%=listaProductoBodegas.get(j).getNombreBodega()%> </p>
