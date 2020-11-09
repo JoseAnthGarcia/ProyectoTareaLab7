@@ -20,7 +20,7 @@ public class MiBodegaProductosDao {
             e.printStackTrace();
         }
 
-        String url = "jdbc:mysql://localhost:3306/sw1?serverTimezone=America/Lima";
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
         // TODO: idBodega se ha hardcodeado
         String sql = "select ceil(count(*)/5) from producto where idBodega=1";  // numero de paginas
@@ -48,7 +48,7 @@ public class MiBodegaProductosDao {
             e.printStackTrace();
         }
 
-        String url = "jdbc:mysql://localhost:3306/sw1?serverTimezone=America/Lima";
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
         int limit = (pagina-1)*5;
         String sql = "select nombreFoto, rutaFoto, nombreProducto,descripcion,stock,precioUnitario from producto WHERE idBodega = 1 limit ?,5;";

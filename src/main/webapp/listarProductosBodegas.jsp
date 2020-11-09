@@ -80,7 +80,7 @@
             if(cant < listaProductoBodegas.size()){
         %>
                 <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-                    <img src="./src/imagenes/Azucar.jpg" width="100" class="img-thumbnail">
+                    <img src="https://wongfood.vteximg.com.br/arquivos/ids/354637-1000-1000/348487-01-2904.jpg?v=637236288141670000" width="100" class="img-thumbnail">
                     <p class="mb-1"><b>Producto: </b> <%=listaProductoBodegas.get(j).getNombreProducto()%> </p>
                     <p class="mb-0"><b>Precio: </b> <%=listaProductoBodegas.get(j).getPrecioProducto()%> </p>
                     <p class="mb-3"><b>Bodega: </b> <%=listaProductoBodegas.get(j).getNombreBodega()%> </p>
