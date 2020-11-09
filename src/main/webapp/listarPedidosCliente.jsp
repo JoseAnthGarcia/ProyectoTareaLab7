@@ -29,6 +29,7 @@
         }
         .margen{
             margin-top: 2%;
+            margin-bottom: 5%;
         }
         .container-fluid{
             text-align: center;
@@ -81,7 +82,7 @@
             </tr>
             <% for (PedidosClienteBean pedido: listaPedidos){%>
             <tr>
-                <td><%=pedido.getCodigoPedido()%> </td>
+                <td><a href="" ><%=pedido.getCodigoPedido()%></a> </td>
                 <td><%=pedido.getEstadoPedido()%></td>
 
                 <td>
@@ -135,6 +136,14 @@
             </ul>
         </nav>
     </div>
+    <div class="margen">
+        <footer class="page-footer font-small blue" style="margin-top: 20px">
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="#">MiMarca</a>
+            </div>
+        </footer>
+    </div>
+
 </div>
 
 </body>
