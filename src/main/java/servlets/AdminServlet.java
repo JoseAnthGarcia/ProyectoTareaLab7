@@ -23,9 +23,17 @@ public class AdminServlet extends HttpServlet {
         BodegasAdminDao bodegaDao = new BodegasAdminDao();
 
         String pag = request.getParameter("pag") == null ? "1" : request.getParameter("pag");
-        int paginaAct = Integer.parseInt(pag); //try
 
         int cantPag = BodegasAdminDao.calcularCantPag();
+        int paginaAct;
+        try{
+            paginaAct = Integer.parseInt(pag); //try
+            if(paginaAct>cantPag){
+                paginaAct = 1;
+            }
+        }catch(NumberFormatException e){
+            paginaAct = 1;
+        }
 
         ArrayList<BodegasAdminBean> listaBodegas = bodegaDao.obtenerListaBodegas(paginaAct);
 
