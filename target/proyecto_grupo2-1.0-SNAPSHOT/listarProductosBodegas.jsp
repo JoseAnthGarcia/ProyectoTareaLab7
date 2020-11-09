@@ -1,6 +1,8 @@
 <%@ page import="beans.ProductoBodegasBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="listaProductoBodegas" scope="request" type="java.util.ArrayList<beans.ProductoBodegasBean>"/>
+<jsp:useBean id="cantPag" scope="request" type="java.lang.Integer"/>
+<jsp:useBean id="paginaAct" scope="request" type="java.lang.Integer"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,41 +53,72 @@
     </div>
 </header>
 
-<div class="container" style="margin-top: 65px; margin-left: 210px">
+<div class="container" style="margin-top: 65px">
     <!-- Presentacion de productos -->
-    <% int cant = 1;
+    <% int cant = 0;
     for(int i=0; i<2; i++){
     %>
     <div class="row">
         <% int min = i*4;
             int max = (i+1)*4;
-        for(int j=min; j<max; j++){%>
-        <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-            <img src="https://tuchacrita.pe/710-big_default_2x/gaseosa-coca-cola-sin-azucar-botella-15-lt.jpg" width="100" class="img-thumbnail">
-            <p class="mb-1"><b>Producto: </b> <%=listaProductoBodegas.get(j).getNombreProducto()%> </p>
-            <p class="mb-0"><b>Precio: </b> <%=listaProductoBodegas.get(j).getPrecioProducto()%> </p>
-            <p class="mb-3"><b>Bodega: </b> <%=listaProductoBodegas.get(j).getNombreBodega()%> </p>
-        </div>
-        <% } %>
+        for(int j=min; j<max; j++){
+            if(cant < listaProductoBodegas.size()){
+        %>
+                <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
+                    <img src="https://tuchacrita.pe/710-big_default_2x/gaseosa-coca-cola-sin-azucar-botella-15-lt.jpg" width="100" class="img-thumbnail">
+                    <p class="mb-1"><b>Producto: </b> <%=listaProductoBodegas.get(j).getNombreProducto()%> </p>
+                    <p class="mb-0"><b>Precio: </b> <%=listaProductoBodegas.get(j).getPrecioProducto()%> </p>
+                    <p class="mb-3"><b>Bodega: </b> <%=listaProductoBodegas.get(j).getNombreBodega()%> </p>
+                </div>
+            <% } else{ %>
+                <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
+                </div>
+            <%}%>
+        <% cant++;
+            } %>
     </div>
     <% } %>
 
     <!-- paginacion -->
     <div class="row">
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
-            <ul class="pagination justify-content-end">
+            <ul class="pagination justify-content-center">
+                <%if(paginaAct==1){%>
+                    <li class="page-item disabled">
+                        <span class="page-link">Anterior</span>
+                    </li>
+                <%}else{%>
+                    <li class="page-item">
+                        <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct-1%>">Anterior</a>
+                    </li>
+                <%}%>
+
+                <% for(int k=1; k<=cantPag; k++){
+                    if(k==paginaAct){%>
+                        <li class="page-item active">
+                          <span class="page-link"><%=k%><span class="sr-only">(current)</span>
+                          </span>
+                        </li>
+                <%      }else{%>
+                        <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=k%>"><%=k%></a></li>
+                <%      }
+                    } %>
+
+
+                <%if(paginaAct==cantPag){%>
                 <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    <span class="page-link">Siguiente</span>
                 </li>
-                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=1">1</a></li>
-                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=2">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <%}else{%>
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct+1%>">Siguiente</a>
                 </li>
+                <%}%>
+
             </ul>
         </nav>
     </div>
+
 
 </div>
 
