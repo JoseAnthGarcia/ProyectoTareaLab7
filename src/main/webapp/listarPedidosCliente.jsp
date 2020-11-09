@@ -101,6 +101,10 @@
                 </li>
                 <%}%>
 
+
+
+
+
                 <% for(int k=1; k<=cantPag; k++){
                     if(k==paginaAct){%>
                 <li class="page-item active">
