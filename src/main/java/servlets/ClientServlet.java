@@ -1,8 +1,7 @@
 package servlets;
 
 import beans.ProductoBodegasBean;
-import com.mysql.cj.xdevapi.Client;
-import daos.ClientDao;
+import daos.ProductosBodegas;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,14 +21,19 @@ public class ClientServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ClientDao clientDao = new ClientDao();
+        ProductosBodegas productosBodegas = new ProductosBodegas();
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
-        int paginaAct = Integer.parseInt(pag); //try
+        int paginaAct;
+        try{
+            paginaAct = Integer.parseInt(pag); //try
+        }catch(NumberFormatException e){
+            paginaAct = 1;
+        }
 
-        int cantPag = clientDao.calcularCantPag();
+        int cantPag = productosBodegas.calcularCantPag();
 
-        ArrayList<ProductoBodegasBean> listaProductos = clientDao.listarProductoBodegas(paginaAct);
+        ArrayList<ProductoBodegasBean> listaProductos = productosBodegas.listarProductoBodegas(paginaAct);
 
         request.setAttribute("listaProductoBodegas", listaProductos);
         request.setAttribute("cantPag", cantPag);

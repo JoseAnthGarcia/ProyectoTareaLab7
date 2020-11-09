@@ -1,8 +1,6 @@
 package servlets;
 
 import beans.MiBodegaProductosBean;
-import beans.ProductoBodegasBean;
-import daos.ClientDao;
 import daos.MiBodegaProductosDao;
 
 import javax.servlet.RequestDispatcher;
