@@ -83,7 +83,12 @@
             <tr>
                 <td><%=pedido.getCodigoPedido()%> </td>
                 <td><%=pedido.getEstadoPedido()%></td>
-                <td><button type="button" class="btn btn-danger">Cancelar</button></td>
+
+                <td>
+                    <% if(pedido.getEstadoPedido().equalsIgnoreCase("Pendiente")){
+                    %>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                <% } %></td>
             </tr>
             <% } %>
         </table>
@@ -100,6 +105,10 @@
                     <a class="page-link" href="<%=request.getContextPath()%>/pedidosCliente?pag=<%=paginaAct-1%>">Anterior</a>
                 </li>
                 <%}%>
+
+
+
+
 
                 <% for(int k=1; k<=cantPag; k++){
                     if(k==paginaAct){%>
