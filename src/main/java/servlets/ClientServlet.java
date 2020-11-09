@@ -24,14 +24,20 @@ public class ClientServlet extends HttpServlet {
         ProductosBodegas productosBodegas = new ProductosBodegas();
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
+
+        int cantPag = productosBodegas.calcularCantPag();
+
         int paginaAct;
         try{
             paginaAct = Integer.parseInt(pag); //try
+            if(paginaAct>cantPag){
+                paginaAct = 1;
+            }
         }catch(NumberFormatException e){
             paginaAct = 1;
         }
 
-        int cantPag = productosBodegas.calcularCantPag();
+
 
         ArrayList<ProductoBodegasBean> listaProductos = productosBodegas.listarProductoBodegas(paginaAct);
 
