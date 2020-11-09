@@ -44,7 +44,7 @@
             background-color: #767676;
         }
     </style>
-    <title>Title</title>
+    <title>Mis pedidos</title>
 </head>
 <body>
 <header>
@@ -58,7 +58,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiTienda.com</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <!--  <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Mi Bodega</strong>
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
@@ -66,7 +66,7 @@
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
-            </a>
+            </a> -->
         </div>
     </div>
 </header>
@@ -95,6 +95,7 @@
         </table>
     </div>
     <div class="row">
+        <button type="button" class="btn btn-danger">Regresar</button>
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
             <ul class="pagination justify-content-center">
                 <%if(paginaAct==1){%>
@@ -138,9 +139,11 @@
     </div>
     <div class="margen">
         <footer class="page-footer font-small blue" style="margin-top: 20px">
+
             <div class="footer-copyright text-center py-3">© 2020 Copyright:
                 <a href="#">MiMarca</a>
             </div>
+
         </footer>
     </div>
 
