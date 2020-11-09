@@ -83,7 +83,12 @@
             <tr>
                 <td><%=pedido.getCodigoPedido()%> </td>
                 <td><%=pedido.getEstadoPedido()%></td>
-                <td><button type="button" class="btn btn-danger">Cancelar</button></td>
+
+                <td>
+                    <% if(pedido.getEstadoPedido().equalsIgnoreCase("Pendiente")){
+                    %>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                <% } %></td>
             </tr>
             <% } %>
         </table>
