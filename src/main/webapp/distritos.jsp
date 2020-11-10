@@ -24,11 +24,10 @@
         }
     </style>
 
-    <title>Bienvenido Bodega!</title>
+    <title>Lista de Bodegas!</title>
 </head>
 <body>
 
-<!-- todo:  corregir el espaciado entre Mi Bodega, Pedidos y Productos -->
 <header>
     <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
@@ -49,6 +48,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
             </a>
+            <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
         </div>
     </div>
 </header>
@@ -65,7 +65,7 @@
                 if(cant < listaBodegas.size()){
         %>
         <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-            <img src="https://tuchacrita.pe/710-big_default_2x/gaseosa-coca-cola-sin-azucar-botella-15-lt.jpg" width="100" class="img-thumbnail">
+            <img src="bodega1.png"  class="img-thumbnail">
             <p class="mb-1"><b>Bodega: </b> <%=listaBodegas.get(j).getNombreBodega()%> </p>
             <p class="mb-0"><b>Dirección: </b> <%=listaBodegas.get(j).getDireccion()%> </p>
         </div>
