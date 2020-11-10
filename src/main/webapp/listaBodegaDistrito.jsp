@@ -54,8 +54,8 @@
                 <strong>Pedidos</strong>
             </a>
 
-            <div class="card"><a href="#" >
-                    <img src="https://res.cloudinary.com/dps0t3hax/image/upload/v1604989347/signout_sgfkct.png" height="30px"/>
+            <div class="card text-white bg-dark" ><a href="#" >
+                    <img src="imagenes/sigout.png" height="30px" class="rounded"/>
                 </a>
             </div>
 
