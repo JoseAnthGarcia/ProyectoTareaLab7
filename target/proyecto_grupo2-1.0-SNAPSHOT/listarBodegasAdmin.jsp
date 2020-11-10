@@ -92,10 +92,7 @@
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <strong>Lista de bodegas</strong>
                 </a>
-                <a href="#" >
-                    <img src="https://cdn4.iconfinder.com/data/icons/proglyphs-business-and-office/512/Door_Out-512.png"
-                         height="35px"/>
-                </a>
+                <a href="#" ><img src="imagenes/sigout.png" height="30px"/></a>
             </div>
         </div>
     </header>
