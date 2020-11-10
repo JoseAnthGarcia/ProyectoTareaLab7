@@ -70,9 +70,9 @@
                     <div class="card-body">
                         <form name="my-form" action="<%=request.getContextPath()%>/BodegaProductos?action=addProduct" method="POST">
                             <div class="form-group row">
-                                <label for="RUC" class="col-md-4 col-form-label text-md-right">Producto</label>
+                                <label for="nombreProducto" class="col-md-4 col-form-label text-md-right">Producto</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="RUC" class="form-control" name="ruc">
+                                    <input type="text" id="nombreProducto" class="form-control" name="nombreProducto">
                                 </div>
                             </div>
 
