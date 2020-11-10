@@ -26,6 +26,7 @@ public class PedidosClienteServlet extends HttpServlet {
 
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
+
         int paginaAct;
 
         int cantPag = pedidosClienteDao.calcularCantPag();
