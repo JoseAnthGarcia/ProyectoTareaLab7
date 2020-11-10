@@ -39,7 +39,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiBodega.com</strong>
             </a>
-            <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
+            <a href="#" ><img src="imagenes/sigout.png" height="30px"/></a>
         </div>
     </div>
 </header>
@@ -56,7 +56,7 @@
                 if(cant < listaBodegas.size()){
         %>
         <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-            <img src="bodega1.png"  class="img-thumbnail">
+            <img src="imagenes/bodega1.png" class="img-thumbnail">
             <p class="mb-1"><b>Bodega: </b> <%=listaBodegas.get(j).getNombreBodega()%> </p>
             <p class="mb-0"><b>Dirección: </b> <%=listaBodegas.get(j).getDireccion()%> </p>
             <div class="form-check">
