@@ -31,6 +31,7 @@ public class ClienteD {
              Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 
             rs.next();
+
             cantPag = rs.getInt(1);
 
         } catch (SQLException throwables) {
@@ -40,6 +41,12 @@ public class ClienteD {
     }
 
     public ArrayList<distritosB> listarBodegas(int pagina){
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         ArrayList listaBodegas = new ArrayList();
 
