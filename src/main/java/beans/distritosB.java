@@ -1,12 +1,10 @@
 package beans;
 
-import java.math.BigDecimal;
-
 public class distritosB {
     private String nombreFoto;
     private String rutaFoto;
     private String nombreBodega;
-    private BigDecimal direccion;
+    private String direccion;
 
     public distritosB() {
     }
@@ -36,11 +34,11 @@ public class distritosB {
         this.nombreBodega = nombreBodega;
     }
 
-    public BigDecimal getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(BigDecimal direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 }
