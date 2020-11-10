@@ -44,16 +44,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiBodega.com</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Mi Bodega</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Productos</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Pedidos</strong>
-            </a>
-
+            
             <div class="card text-white bg-dark" ><a href="#" >
                     <img src="imagenes/sigout.png" height="30px" class="rounded"/>
                 </a>
