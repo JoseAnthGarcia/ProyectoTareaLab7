@@ -27,7 +27,7 @@ public class BodegaDistritoServlet extends HttpServlet {
 
         ClienteD clienteD = new ClienteD();
 
-        int idCodigo = 5;
+        int idCodigo = 4;
 
         String pag = request.getParameter("pag") == null ? "1" : request.getParameter("pag");
 

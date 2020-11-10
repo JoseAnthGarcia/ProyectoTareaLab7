@@ -53,27 +53,32 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
             </a>
+
+            <div class="card"><a href="#" >
+                    <img src="https://res.cloudinary.com/dps0t3hax/image/upload/v1604989347/signout_sgfkct.png" height="30px"/>
+                </a>
+            </div>
+
         </div>
     </div>
 </header>
 <body>
-<div class="container">
-    <p></p>
-    <h1 class="jumbotron-heading">Estas son tus bodegas más cercanas:</h1>
+<div class="container" style="margin-top: 30px" >
+    <h2 class="jumbotron-heading">Estas son tus bodegas más cercanas:</h2>
 </div>
-<div class="container" style="margin-top: 120px">
+
+<div class="container" style="margin-top: 50px">
     <!-- Presentacion de productos -->
     <% int cant = 0;
-        for(int i=0; i<1; i++){
     %>
     <div class="row">
-        <% int min = i*3; //aca era 3
-            int max = (i+1)*3;
+        <% int min = 0;
+            int max = 3;
             for(int j=min; j<max; j++){
                 if(cant < listaBodegas.size()){
         %>
-        <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
-            <img src="https://res.cloudinary.com/dps0t3hax/image/upload/v1604908416/shop-vector-icon_hrahx2.jpg" width="300" class="img-thumbnail">
+        <div class="col-sm-4"> <!-- Probar medidas "sm-4"? -->
+            <img src="https://res.cloudinary.com/dps0t3hax/image/upload/v1604908416/shop-vector-icon_hrahx2.jpg" width="230" class="img-thumbnail">
             <p class="mb-1"><b>Bodega: </b> <%=listaBodegas.get(j).getNombreBodega()%> </p>
             <p class="mb-0"><b>Dirección: </b> <%=listaBodegas.get(j).getDireccion()%> </p>
         </div>
@@ -84,10 +89,10 @@
         <% cant++;
         } %>
     </div>
-    <% } %>
 
     <!-- paginacion -->
     <div class="row">
+        <div class="container" style="margin-top: 30px">
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
             <ul class="pagination justify-content-center">
                 <%if(paginaAct==1){%>
@@ -124,17 +129,20 @@
 
             </ul>
         </nav>
+            <div class="pagination justify-content-end">
+                <a href="#" class="btn btn-outline-danger" ><h5>Elegir otra Bodega</h5></a>
+            </div>
+        </div>
+
     </div>
-    <div class="pagination justify-content-end">
-        <a href="#" class="btn btn-outline-danger" ><h4>Elegir otra Bodega</h4></a>
-    </div>
+
 
 </div>
 
 
-<footer class="page-footer font-small blue" style="margin-top: 20px">
+<footer class="page-footer font-small blue" style="margin-top: 5px">
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="#">MiMarca</a>
+        <a href="#">MiBodega.com</a>
     </div>
 </footer>
 </body>

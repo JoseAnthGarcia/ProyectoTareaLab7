@@ -95,7 +95,7 @@ public class ClienteD {
         String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
         String sql = "select ceil(count(nombreFoto)/3)\n" +
-                "from bodega\n where idDistrito="+idDistrito+";";
+                "from bodega\n where idDistrito="+idDistrito+" and  lower(estado) = \"activo\";";
 
         int cantPag = 0;
         try (Connection conn = DriverManager.getConnection(url, "root", "root");
