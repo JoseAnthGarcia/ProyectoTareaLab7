@@ -58,7 +58,7 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiMarca.com</strong>
             </a>
-            <a href="#" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR9XQYb7eVu1VyTTjGNd69RWqaIge0precdjw&usqp=CAU" height="30px"/></a>
+            <a href="#" ><img src="imagenes/sigout.png" height="30px"/></a>
             <!--  <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Mi Bodega</strong>
             </a>
