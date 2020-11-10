@@ -5,7 +5,8 @@ import beans.ProductoBodegasBean;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ClientDao {
+public class ProductosBodegas {
+
     public int calcularCantPag(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

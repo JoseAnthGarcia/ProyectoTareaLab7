@@ -1,7 +1,7 @@
 package servlets;
 
-import beans.ProductoBodegasBean;
-import daos.ProductosBodegas;
+import beans.distritosB;
+import daos.ClienteD;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ClientServlet", urlPatterns = {"/ClientServlet"})
-public class ClientServlet extends HttpServlet {
+@WebServlet(name = "BodegaDistritoServlet", urlPatterns = "/BodegaDistritoServlet")
+public class BodegaDistritoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -21,11 +21,13 @@ public class ClientServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductosBodegas productosBodegas = new ProductosBodegas();
-        String pag = request.getParameter("pag") == null ?
-                "1" : request.getParameter("pag");
 
-        int cantPag = productosBodegas.calcularCantPag();
+        ClienteD clientDao = new ClienteD();
+        int idCodigo = 1;
+
+        String pag = request.getParameter("pag") == null ? "1" : request.getParameter("pag");
+
+        int cantPag = clientDao.calcularCantPagDistrito(idCodigo);
 
         int paginaAct;
         try{
@@ -38,14 +40,14 @@ public class ClientServlet extends HttpServlet {
         }
 
 
+        ArrayList<distritosB> listaBodegas = clientDao.listarBodegasDistrito(paginaAct,idCodigo);
 
-        ArrayList<ProductoBodegasBean> listaProductos = productosBodegas.listarProductoBodegas(paginaAct);
-
-        request.setAttribute("listaProductoBodegas", listaProductos);
+        request.setAttribute("listaBodegas", listaBodegas);
         request.setAttribute("cantPag", cantPag);
-        request.setAttribute("paginaAct",paginaAct);
+        request.setAttribute("paginaAct", paginaAct);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("listarProductosBodegas.jsp");
-        requestDispatcher.forward(request,response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("listaBodegaDistrito.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
+

@@ -31,6 +31,15 @@ public class PedidosBodegaServlet extends HttpServlet {
                         "1" : request.getParameter("pag");
                 int paginaAct = Integer.parseInt(pag);
                 int cantPag = pedidoBodegaDao.calcularCantPag();
+                try{
+                    paginaAct = Integer.parseInt(pag);
+                    if(paginaAct>cantPag){
+                        paginaAct = 1;
+                    }
+                }catch(NumberFormatException e){
+                    paginaAct = 1;
+                }
+
                 ArrayList<PedidosBodegaBean> listaPedidosBodega = pedidoBodegaDao.obtenerListaPedidosBodega(paginaAct);
                 request.setAttribute("listaPedidosBodega", listaPedidosBodega);
                 request.setAttribute("cantPag", cantPag);

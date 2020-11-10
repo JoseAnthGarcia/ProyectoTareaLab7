@@ -24,16 +24,21 @@ public class PedidosClienteServlet extends HttpServlet {
         PedidosClienteDao pedidosClienteDao = new PedidosClienteDao();
 
 
-
-
         String pag = request.getParameter("pag") == null ?
                 "1" : request.getParameter("pag");
-        int paginaAct = Integer.parseInt(pag); //try
+        int paginaAct;
 
         int cantPag = pedidosClienteDao.calcularCantPag();
+        try{
+            paginaAct = Integer.parseInt(pag); //try
+            if(paginaAct>cantPag){
+                paginaAct = 1;
+            }
+        }catch(NumberFormatException e){
+            paginaAct = 1;
+        }
 
         ArrayList<PedidosClienteBean> listaPedidos = pedidosClienteDao.listarPedidosCliente(paginaAct);
-
         request.setAttribute("listaPedidos", listaPedidos);
         request.setAttribute("cantPag", cantPag);
         request.setAttribute("paginaAct",paginaAct);

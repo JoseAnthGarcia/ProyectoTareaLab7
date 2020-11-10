@@ -15,6 +15,36 @@
 <head>
     <title>Title</title>
     <jsp:include page="bootstrapRepository.jsp"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .btn {
+            background-color: #d6d2c4;
+            border: none;
+            color: black;
+            padding: 12px 16px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        /* Darker background on mouse-over */
+        .btn:hover {
+            background-color: #f05454;
+        }
+        .margen{
+            margin-top: 2%;
+        }
+        .container-fluid{
+            text-align: center;
+            padding: 3% 15% ;
+        }
+        .page-item .page-link {
+            color: #767676;
+            border-color: #767676;
+        }
+        .page-item.active .page-link {
+            border-color: #767676;
+            background-color: #767676;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -37,12 +67,14 @@
             <a href="<%=request.getContextPath()%>/PedidosServlet" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
             </a>
+            <a href="#" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR9XQYb7eVu1VyTTjGNd69RWqaIge0precdjw&usqp=CAU.png" height="30px"/></a>
         </div>
     </div>
 </header>
 <div class="container" style="margin-top: 20px">
-    <div class="row">
-        <table class="table table-hover">
+    <h1 class="margen">Pedidos</h1>
+    <div class="container-fluid">
+        <table class="table container-fluid">
             <tr>
                 <th>idPedido</th>
                 <th>Codigo</th>
@@ -56,10 +88,15 @@
                 </td>
                 <td><a href="<%=request.getContextPath()%>/PedidosServlet?accion=mostrar&idPedido=<%=pedidos.getIdPedido() %>"><%=pedidos.getCodigo()%></a>
                 </td>
-                <td><%=pedidos.getEstado()%>
+                <td><%=pedidos.getEstado()%></td>
+                <td>
+                    <% if(pedidos.getEstado().equalsIgnoreCase("Pendiente")){
+                    %>
+                <a href="<%=request.getContextPath()%>/PedidosServlet?accion=entregar&idPedido=<%=pedidos.getIdPedido()%>" class="btn btn-outline-success">Pedido Entregado</a>
+                <a href="<%=request.getContextPath()%>/PedidosServlet?accion=cancelar&idPedido=<%=pedidos.getIdPedido()%>" class="btn btn-outline-danger">Cancelar Pedido</a>
+                    <% } %>
                 </td>
-                <td><a href="<%=request.getContextPath()%>/PedidosServlet?accion=entregar&idPedido=<%=pedidos.getIdPedido()%>" class="btn btn-outline-success">Pedido Entregado</a></td>
-                <td><a href="<%=request.getContextPath()%>/PedidosServlet?accion=cancelar&idPedido=<%=pedidos.getIdPedido()%>" class="btn btn-outline-danger">Cancelar Pedido</a></td>
+
             </tr>
             <% } %>
         </table>

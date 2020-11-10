@@ -1,14 +1,9 @@
-<%@ page import="beans.PedidosClienteBean" %><%--
-  Created by IntelliJ IDEA.
-  User: Katherine
-  Date: 8/11/2020
-  Time: 11:51
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="beans.distritosB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id= "listaPedidos" scope="request" type="java.util.ArrayList<beans.PedidosClienteBean>" />
+<jsp:useBean id="listaBodegas" scope="request" type="java.util.ArrayList<beans.distritosB>"/>
 <jsp:useBean id="cantPag" scope="request" type="java.lang.Integer"/>
 <jsp:useBean id="paginaAct" scope="request" type="java.lang.Integer"/>
+<!DOCTYPE html>
 <html>
 <head>
     <jsp:include page="bootstrapRepository.jsp"/>
@@ -16,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .btn {
-            background-color: #d6d2c4;
+            background-color: #ffffff;
             border: none;
             color: black;
             padding: 12px 16px;
@@ -25,28 +20,14 @@
         }
         /* Darker background on mouse-over */
         .btn:hover {
-            background-color: #f05454;
-        }
-        .margen{
-            margin-top: 2%;
-            margin-bottom: 5%;
-        }
-        .container-fluid{
-            text-align: center;
-            padding: 3% 15% ;
-        }
-        .page-item .page-link {
-            color: #767676;
-            border-color: #767676;
-        }
-        .page-item.active .page-link {
-            border-color: #767676;
             background-color: #767676;
         }
     </style>
-    <title>Mis pedidos</title>
+
+    <title>Lista de Bodegas!</title>
 </head>
 <body>
+
 <header>
     <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
@@ -56,9 +37,9 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>MiTienda.com</strong>
+                <strong>MiBodega.com</strong>
             </a>
-            <!--  <a href="#" class="navbar-brand d-flex align-items-center">
+            <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Mi Bodega</strong>
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
@@ -66,36 +47,39 @@
             </a>
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
-            </a> -->
+            </a>
+            <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
         </div>
     </div>
 </header>
-<div class="Container">
 
-    <h1 class="margen">Mis pedidos</h1>
-    <div class="container-fluid">
-        <table class="table container-fluid">
-            <tr>
-                <th>Código </th>
-                <th>Estado</th>
-                <th>Cancelar pedido</th>
-            </tr>
-            <% for (PedidosClienteBean pedido: listaPedidos){%>
-            <tr>
-                <td><a href="" ><%=pedido.getCodigoPedido()%></a> </td>
-                <td><%=pedido.getEstadoPedido()%></td>
-
-                <td>
-                    <% if(pedido.getEstadoPedido().equalsIgnoreCase("Pendiente")){
-                    %>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
-                <% } %></td>
-            </tr>
-            <% } %>
-        </table>
-    </div>
+<div class="container" style="margin-top: 65px">
+    <!-- Presentacion de productos -->
+    <% int cant = 0;
+        for(int i=0; i<2; i++){
+    %>
     <div class="row">
-        <button type="button" class="btn btn-danger">Regresar</button>
+        <% int min = i*4;
+            int max = (i+1)*4;
+            for(int j=min; j<max; j++){
+                if(cant < listaBodegas.size()){
+        %>
+        <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
+            <img src="bodega1.png"  class="img-thumbnail">
+            <p class="mb-1"><b>Bodega: </b> <%=listaBodegas.get(j).getNombreBodega()%> </p>
+            <p class="mb-0"><b>Dirección: </b> <%=listaBodegas.get(j).getDireccion()%> </p>
+        </div>
+        <% } else{ %>
+        <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
+        </div>
+        <%}%>
+        <% cant++;
+        } %>
+    </div>
+    <% } %>
+
+    <!-- paginacion -->
+    <div class="row">
         <nav aria-label="Page navigation example" class = "mx-auto"> <!-- Recordar centro !! -->
             <ul class="pagination justify-content-center">
                 <%if(paginaAct==1){%>
@@ -104,13 +88,9 @@
                 </li>
                 <%}else{%>
                 <li class="page-item">
-                    <a class="page-link" href="<%=request.getContextPath()%>/pedidosCliente?pag=<%=paginaAct-1%>">Anterior</a>
+                    <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct-1%>">Anterior</a>
                 </li>
                 <%}%>
-
-
-
-
 
                 <% for(int k=1; k<=cantPag; k++){
                     if(k==paginaAct){%>
@@ -119,7 +99,7 @@
                           </span>
                 </li>
                 <%      }else{%>
-                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/pedidosCliente?pag=<%=k%>"><%=k%></a></li>
+                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=k%>"><%=k%></a></li>
                 <%      }
                 } %>
 
@@ -130,24 +110,20 @@
                 </li>
                 <%}else{%>
                 <li class="page-item">
-                    <a class="page-link" href="<%=request.getContextPath()%>/pedidosCliente?pag=<%=paginaAct+1%>">Siguiente</a>
+                    <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct+1%>">Siguiente</a>
                 </li>
                 <%}%>
 
             </ul>
         </nav>
     </div>
-    <div class="margen">
-        <footer class="page-footer font-small blue" style="margin-top: 20px">
-
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
-                <a href="#">MiMarca</a>
-            </div>
-
-        </footer>
-    </div>
-
 </div>
 
+<footer class="page-footer font-small blue" style="margin-top: 20px">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="#">MiMarca</a>
+    </div>
+</footer>
+</div>
 </body>
 </html>
