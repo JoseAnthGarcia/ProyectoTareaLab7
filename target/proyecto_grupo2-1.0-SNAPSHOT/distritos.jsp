@@ -39,22 +39,13 @@
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <strong>MiBodega.com</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Mi Bodega</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Productos</strong>
-            </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Pedidos</strong>
-            </a>
             <a href="#" ><img src="https://www.pngkey.com/png/detail/400-4009588_png-file-svg-log-out-icon-png.png" height="30px"/></a>
         </div>
     </div>
 </header>
 
 <div class="container" style="margin-top: 65px">
-    <!-- Presentacion de productos -->
+    <!-- Presentacion de bodegas -->
     <% int cant = 0;
         for(int i=0; i<2; i++){
     %>
@@ -68,6 +59,12 @@
             <img src="bodega1.png"  class="img-thumbnail">
             <p class="mb-1"><b>Bodega: </b> <%=listaBodegas.get(j).getNombreBodega()%> </p>
             <p class="mb-0"><b>Dirección: </b> <%=listaBodegas.get(j).getDireccion()%> </p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    Escoger
+                </label>
+            </div>
         </div>
         <% } else{ %>
         <div class="col-sm-3"> <!-- Probar medidas "sm-3"? -->
@@ -88,7 +85,7 @@
                 </li>
                 <%}else{%>
                 <li class="page-item">
-                    <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct-1%>">Anterior</a>
+                    <a class="page-link" href="<%=request.getContextPath()%>/ListaBodegasServlet?pag=<%=paginaAct-1%>">Anterior</a>
                 </li>
                 <%}%>
 
@@ -99,7 +96,7 @@
                           </span>
                 </li>
                 <%      }else{%>
-                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=k%>"><%=k%></a></li>
+                <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/ListaBodegasServlet?pag=<%=k%>"><%=k%></a></li>
                 <%      }
                 } %>
 
@@ -110,12 +107,13 @@
                 </li>
                 <%}else{%>
                 <li class="page-item">
-                    <a class="page-link" href="<%=request.getContextPath()%>/ClientServlet?pag=<%=paginaAct+1%>">Siguiente</a>
+                    <a class="page-link" href="<%=request.getContextPath()%>/ListaBodegasServlet?pag=<%=paginaAct+1%>">Siguiente</a>
                 </li>
                 <%}%>
 
             </ul>
         </nav>
+        <button type="button" class="btn btn-secondary">Realizar un pedido</button>
     </div>
 </div>
 
