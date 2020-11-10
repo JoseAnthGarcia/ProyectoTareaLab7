@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 @WebServlet(name = "ClientServlet", urlPatterns = {"/ClientServlet"})
 public class ClientServlet extends HttpServlet {

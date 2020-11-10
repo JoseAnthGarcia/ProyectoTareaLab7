@@ -67,6 +67,7 @@
             <a href="<%=request.getContextPath()%>/PedidosServlet" class="navbar-brand d-flex align-items-center">
                 <strong>Pedidos</strong>
             </a>
+            <a href="#" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR9XQYb7eVu1VyTTjGNd69RWqaIge0precdjw&usqp=CAU.png" height="30px"/></a>
         </div>
     </div>
 </header>
@@ -75,16 +76,14 @@
     <div class="container-fluid">
         <table class="table container-fluid">
             <tr>
-                <th>idPedido</th>
+                <th></th>
                 <th>Codigo</th>
                 <th>Estado</th>
                 <th></th>
                 <th></th>
             </tr>
-            <% for (PedidosBodegaBean pedidos : listaPedidosBodega) { %>
+            <%for (PedidosBodegaBean pedidos : listaPedidosBodega) { %>
             <tr>
-                <td><%=pedidos.getIdPedido()%>
-                </td>
                 <td><a href="<%=request.getContextPath()%>/PedidosServlet?accion=mostrar&idPedido=<%=pedidos.getIdPedido() %>"><%=pedidos.getCodigo()%></a>
                 </td>
                 <td><%=pedidos.getEstado()%></td>

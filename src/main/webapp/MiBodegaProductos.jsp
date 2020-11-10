@@ -99,7 +99,8 @@
             </tr>
             </thead>
             <tbody>
-            <!-- CAMBIAR TR -->
+
+            <!-- Inicio del bucle para listar los productos-->
             <%
                 for(MiBodegaProductosBean producto : listaProductoBodegas){
             %>

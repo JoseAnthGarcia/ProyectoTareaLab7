@@ -22,12 +22,16 @@ public class BodegaDistritoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         ClienteD clientDao = new ClienteD();
-        int idCodigo = 1;
+
+        ClienteD clienteD = new ClienteD();
+
+        int idCodigo = 4;
 
         String pag = request.getParameter("pag") == null ? "1" : request.getParameter("pag");
 
-        int cantPag = clientDao.calcularCantPagDistrito(idCodigo);
+        int cantPag = clienteD.calcularCantPagDistrito(idCodigo);
 
         int paginaAct;
         try{
@@ -40,7 +44,7 @@ public class BodegaDistritoServlet extends HttpServlet {
         }
 
 
-        ArrayList<distritosB> listaBodegas = clientDao.listarBodegasDistrito(paginaAct,idCodigo);
+        ArrayList<distritosB> listaBodegas = clienteD.listarBodegasDistrito(paginaAct,idCodigo);
 
         request.setAttribute("listaBodegas", listaBodegas);
         request.setAttribute("cantPag", cantPag);
