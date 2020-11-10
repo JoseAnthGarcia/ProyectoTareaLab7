@@ -24,11 +24,10 @@
         }
     </style>
 
-    <title>Bienvenido Bodega!</title>
+    <title>Lista de Bodegas!</title>
 </head>
 <body>
 
-<!-- todo:  corregir el espaciado entre Mi Bodega, Pedidos y Productos -->
 <header>
     <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
