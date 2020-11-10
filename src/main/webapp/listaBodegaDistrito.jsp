@@ -125,6 +125,10 @@
             </ul>
         </nav>
     </div>
+    <div class="pagination justify-content-end">
+        <a href="#" class="btn btn-outline-danger" ><h4>Elegir otra Bodega</h4></a>
+    </div>
+
 </div>
 
 

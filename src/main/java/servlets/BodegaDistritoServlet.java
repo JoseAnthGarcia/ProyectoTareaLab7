@@ -23,7 +23,7 @@ public class BodegaDistritoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ClienteD clientDao = new ClienteD();
-        int idCodigo = 1;
+        int idCodigo = 5;
 
         String pag = request.getParameter("pag") == null ? "1" : request.getParameter("pag");
 
