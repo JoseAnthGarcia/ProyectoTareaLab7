@@ -64,7 +64,7 @@
             </a>
             <a>
                 <div class="card"><a href="../login.html" >
-                    <img src="signout.png" height="30px"/>
+                    <a href="#" ><img src="imagenes/sigout.png" height="30px"/></a>
                 </a>
                 </div>
             </a>
@@ -109,7 +109,9 @@
                     <input type="radio" name="productoSeleccionado">
                 </th>
                 <td>
-                    <img src="<%=producto.getRutaFoto()%>" height="35">
+                    <img src="https://mui.today/__export/1589466590626/sites/mui/img/2020/05/14/coca-cola-sabor-botella-vidrio.jpg_879108255.jpg" height="35">
+                    <!-- todo: reemplazar por la ruta de la foto ingresar
+                    <img src="<%=producto.getRutaFoto()%>" height="35"> -->
                 </td>
                 <td><%=producto.getNombreProducto()%></td>
                 <td><%=producto.getDescripcion()%></td>

@@ -87,7 +87,7 @@ public class MiBodegaProductosDao {
             e.printStackTrace();
         }
 
-        String url = "jdbc:mysql://localhost:3306/sw1?serverTimezone=America/Lima";
+        String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=America/Lima";
 
         // TODO: idBodega, nombreFoto, rutaFoto se ha hardcodeado
         String sql = "insert into producto (nombreFoto,rutaFoto,nombreProducto,descripcion,stock,precioUnitario,idBodega) values (\n" +
